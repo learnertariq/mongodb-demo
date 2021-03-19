@@ -40,7 +40,7 @@ async function findCourse() {
     // .find({ instructor: { $eq: 'Tariq'} })
     // .find({ instructor: { $in: ["Mosh", "Tariq"] } });
     ////////////  Logical operators
-    // .find()
+    .find()
     // .and([{ instructor: 'Tariq' }, { name: 'NodeJs' }])
     ///////////  Ragular Expression
     // .find({ instructor: /^Tariq/ })
@@ -49,8 +49,8 @@ async function findCourse() {
     ///////////  Counting Documents
     // .countDocuments();
     ///////////  Pagination
-    .skip((pageNumber - 1) * pageSize)
-    .limit(pageSize);
+    // .skip((pageNumber - 1) * pageSize)
+    // .limit(pageSize);
   // .sort({ name: -1 })
   //////////   Getting selected properties
   // .select({ name: 1, date: 1 });
