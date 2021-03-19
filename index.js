@@ -16,13 +16,13 @@ const courseShema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
 });
 
+const Course = mongoose.model("Course", courseShema);
+
 async function createCourse() {
-  const Course = mongoose.model("Course", courseShema);
   const course = new Course({
     name: "NodeJs",
     instructor: "Tariq",
   });
-
   try {
     const result = await course.save();
     console.log(result);
@@ -32,4 +32,12 @@ async function createCourse() {
   }
 }
 
-createCourse();
+async function findCourse() {
+  const course = await Course.find({ instructor: "Tariq" })
+    .limit(2)
+    .sort({ name: -1 })
+    .select({ name: 1, date: 1 });
+  console.log(course);
+}
+
+findCourse();
