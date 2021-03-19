@@ -33,10 +33,27 @@ async function createCourse() {
 }
 
 async function findCourse() {
-  const course = await Course.find({ instructor: "Tariq" })
-    .limit(2)
-    .sort({ name: -1 })
-    .select({ name: 1, date: 1 });
+  const pageNumber = 2;
+  const pageSize = 10;
+  const course = await Course
+    /////////  Comparison operators
+    // .find({ instructor: { $eq: 'Tariq'} })
+    // .find({ instructor: { $in: ["Mosh", "Tariq"] } });
+    ////////////  Logical operators
+    // .find()
+    // .and([{ instructor: 'Tariq' }, { name: 'NodeJs' }])
+    ///////////  Ragular Expression
+    // .find({ instructor: /^Tariq/ })
+    // .find({ instructor: /Tariq$/ })
+    // .find({ instructor: /.*ariq$/ })
+    ///////////  Counting Documents
+    // .countDocuments();
+    ///////////  Pagination
+    .skip((pageNumber - 1) * pageSize)
+    .limit(pageSize);
+  // .sort({ name: -1 })
+  //////////   Getting selected properties
+  // .select({ name: 1, date: 1 });
   console.log(course);
 }
 
